@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
-
+import Modal from './modal'
 function App() {
+  const [value ,setValue ] = useState('');
+  const [ visible, setVisible] = useState(true)
+  const handleSetValue = value => {
+    setValue(value)
+  }
+  const onOk = () => {
+    setVisible(false)
+  }
+  const onCancel = () => {
+    setVisible(false)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className="btn" onClick={() => setVisible(true)}>打开对话框</button>
+      <Modal
+        visible={visible}
+        title="这里是标题"
+        content={"确认删除账号？"}
+        onOk={onOk}
+        onCancel={onCancel}
+      />
     </div>
   );
 }
